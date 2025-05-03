@@ -27,7 +27,7 @@ print (pracData[pracData['Genre '] == 'Action'])
 genre_counts.sort_values(ascending=False).plot(kind='bar')
 
 
-
+# sets up the bar plot for visual data 
 rating_average = pracData['Rating '].value_counts()
 pracData.sort_values(by = 'Rating ', ascending=False).head(5) # sorts the date and displays the top 5 movie with highest rating
 rating_average.plot(kind='bar')
