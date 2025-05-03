@@ -1,7 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt 
 
-pracData = pd.read_csv('C:\\Users\\Renz\\Pythonprac\\corePython_dataHandling\\PracDataSet - Sheet1.csv')
+pracData = pd.read_csv('C:\\Users\\Renz\\Pythonprac\\corePython_dataHandling\\simpleDataAnaylzer\\PracDataSet - Sheet1.csv')
 
 print(pracData.to_string()) # reads the csv file as string
 print(pracData.isnull().sum()) # checks the csv file if it has missing data
@@ -22,11 +22,6 @@ plt.xlabel('Genre')
 plt.ylabel('Count')
 plt.show()
 
-# Filter genre
-print (pracData[pracData['Genre '] == 'Action'])
-genre_counts.sort_values(ascending=False).plot(kind='bar')
-
-
 # sets up the bar plot for visual data 
 rating_average = pracData['Rating '].value_counts()
 pracData.sort_values(by = 'Rating ', ascending=False).head(5) # sorts the date and displays the top 5 movie with highest rating
@@ -36,6 +31,9 @@ plt.xlabel('Genre')
 plt.ylabel('Count')
 plt.show()
 
+# Filter genre
+print (pracData[pracData['Genre '] == 'Action'])
+genre_counts.sort_values(ascending=False).plot(kind='bar')
 
 # save filtered CSV
 action_genre = pracData[pracData['Genre '] == 'Action']
