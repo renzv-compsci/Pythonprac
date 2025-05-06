@@ -40,3 +40,17 @@ movieData = movieData.explode('Certificate')
 # Average rating per certificate
 ave_rateperYear = movieData.groupby('Certificate')['Rate'].mean()
 print(f"\nAverage rating per certifacate: {ave_rateperYear}")
+
+# FILTERING 
+
+# Movies with rating above 8.0 
+filteredby_Rating = movieData[movieData['Rate'] > 8.0][['Title', 'Rate']]
+print(f"Movies with rating above 8.0: \n{filteredby_Rating}")
+
+# Movies with metascore of above 80 
+filteredby_Metascore = movieData[movieData['Metascore'] > 85][['Title', 'Metascore']]
+print(f"Movies with metascore above 80: {filteredby_Metascore}")
+
+# Top 5 most longest movies 
+# sortedby_Duration = sorted(movieData, key=)
+movieData.sort_values(by = 'Rating ', ascending=False).head(5)
