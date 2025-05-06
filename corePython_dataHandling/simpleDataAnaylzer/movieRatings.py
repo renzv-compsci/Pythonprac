@@ -1,5 +1,5 @@
 import pandas as pd 
-
+import matplotlib.pyplot as mp
 movieData = pd.read_csv('C:\\Users\\Renz\\Pythonprac\\corePython_dataHandling\\simpleDataAnaylzer\\IMDB top 1000.csv')
 
 # BASIC STATISTICS
@@ -49,8 +49,33 @@ print(f"Movies with rating above 8.0: \n{filteredby_Rating}")
 
 # Movies with metascore of above 80 
 filteredby_Metascore = movieData[movieData['Metascore'] > 85][['Title', 'Metascore']]
-print(f"Movies with metascore above 80: {filteredby_Metascore}")
+print(f"Movies with metascore above 80: \n{filteredby_Metascore}")
 
-# Top 5 most longest movies 
-# sortedby_Duration = sorted(movieData, key=)
-movieData.sort_values(by = 'Rating ', ascending=False).head(5)
+# Top 5 most highest metascore
+top5_Metascore = movieData[movieData['Metascore'] > 90][['Title', 'Rate', 'Metascore']]
+sortedby_Metascore = top5_Metascore.sort_values(by='Metascore', ascending=False).head(5)
+print(f'Top 5 highest metascore: \n{sortedby_Metascore}')
+
+# VISUALIZATION
+
+# Average rating per genre (Bar Chart)
+mp.figure() # seperate tables
+ave_rating = movieData.groupby('Genre')['Rate'].mean()
+ave_rating.plot(kind='bar')
+mp.title('Average rating by genre')
+mp.xlabel('Genre')
+mp.ylabel('Rating')
+mp.tight_layout()
+mp.show()
+print(f'Average rating per genre: {ave_rating}')
+
+# Average rating per certificate (Line plot)
+mp.figure() # seperate tables
+aveRating_perCertificate = movieData.groupby('Certificate')['Rate'].mean()
+aveRating_perCertificate.plot(kind='line')
+mp.title('Average rating per certificate')
+mp.xlabel('Certificate')
+mp.ylabel('Rating')
+mp.tight_layout()
+mp.show()
+print(f'Average rating per certificate: {aveRating_perCertificate}')
